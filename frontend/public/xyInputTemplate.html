@@ -1,0 +1,11 @@
+
+<div>
+  <input type="file" name="spectra-input" multiple="multiple" class="hidden-input"/>
+  <div class="button-group">
+    <div ng-click="addFiles()" class="btn btn-success">Upload spectra</div>
+    <div ng-click="clearFiles()" class="btn btn-primary">Clear spectra</div>
+    <div ng-repeat="file in files" class="form-group">
+      <input type="color" ng-attr-name="color-input-{{$index}}" ng-model="file.color" class="hidden-input"/><span ng-style="{'background-color': file.color}" ng-click="pickColor($index)" class="color-square">                       </span><span class="filename">{{file.filename}}</span>
+    </div>
+  </div>
+</div>

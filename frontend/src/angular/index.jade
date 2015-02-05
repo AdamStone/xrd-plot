@@ -1,0 +1,22 @@
+doctype html
+html(lang="en")
+  head
+    link(href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css", rel="stylesheet")
+    link(rel="stylesheet" type="text/css" href="./styles.css")
+
+    script(src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js")
+    script(src="http://d3js.org/d3.v3.min.js" charset="utf-8")
+    script(src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js")
+    script(src="//localhost:35729/livereload.js")
+    script(src="app.js")
+
+  body(ng-app="DataAnalysis")
+    .container-fluid(ng-controller="Main")
+      .row 
+        .col-sm-9.main-panel
+          
+          vector-graph(config="graph", spectra="spectra", pdfs="pdfs", colors="getColors()")
+        
+        .col-sm-3.sidebar
+          xy-input(files="spectra")
+          pdf-input(files="pdfs", scale="graph.pdfScale")

@@ -1,0 +1,15 @@
+
+<div>
+  <input type="file" name="pdf-input" multiple="multiple" class="hidden-input"/>
+  <div class="button-group">
+    <div ng-click="addFiles()" class="btn btn-success">Upload Xray PDFs</div>
+    <div ng-click="clearFiles()" class="btn btn-primary">Clear PDFs</div>
+    <div class="form-group">
+      <label>Vertical scaling</label>
+      <input ng-model="scale" type="range" min="10" max="100"/>
+    </div>
+    <div ng-repeat="file in files" class="form-group">
+      <input type="color" ng-attr-name="color-input-{{$index}}" ng-model="file.color" class="hidden-input"/><span ng-style="{'background-color': file.color}" ng-click="pickColor($index)" class="color-square">                       </span><span class="filename">{{file.filename}}</span>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+div
+  input(type="file" class="hidden-input" name="spectra-input" multiple)
+  .button-group
+    .btn.btn-success(ng-click="addFiles()") Upload spectra
+    .btn.btn-primary(ng-click="clearFiles()") Clear spectra
+            
+    .form-group(ng-repeat="file in files")
+      
+      input(type="color", class="hidden-input", ng-attr-name="color-input-{{$index}}", ng-model="file.color")
+     
+      span.color-square(ng-style="{'background-color': file.color}",
+                        ng-click="pickColor($index)")                        
+    
+      span.filename {{file.filename}}
+
+        
