@@ -2,7 +2,9 @@
 
 Angular app for plotting x-ray powder diffraction diffraction data from text files and exporting as SVG.
 
-![screenshot](screenshot.png)
+[http://http://adamstone.github.io/xrd-plot/](http://http://adamstone.github.io/xrd-plot/)
+
+[![screenshot](screenshot.png)](http://http://adamstone.github.io/xrd-plot/)
 
 `Upload spectra` expects collected spectral data from XRD, while `Upload Xray PDFs` expects powder diffraction file data (peak positions and intensities only). An example spectrum and PDF for quartz (http://rruff.info/quartz/) are included in the data directory for demonstration purposes, since I can't share my actual data.
 
