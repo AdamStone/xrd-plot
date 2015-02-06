@@ -2,7 +2,7 @@
 
 Angular app for plotting x-ray powder diffraction diffraction data from text files and exporting as SVG.
 
-[http://http://adamstone.github.io/xrd-plot/](http://http://adamstone.github.io/xrd-plot/)
+[http://adamstone.github.io/xrd-plot/](http://adamstone.github.io/xrd-plot/)
 
 [![screenshot](screenshot.png)](http://http://adamstone.github.io/xrd-plot/)
 
