@@ -1,6 +1,8 @@
+"use strict";
+
 angular.module('DataAnalysis', [
   'MainController',
-  'D3Service',
+  'D3Service', 'ColorService',
   'FileInputDirectives', 'GraphDirective'
 ])
 
@@ -8,4 +10,4 @@ angular.module('DataAnalysis', [
   '$compileProvider', function($compileProvider) {
     $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|data):/);
   }
-])
+]);

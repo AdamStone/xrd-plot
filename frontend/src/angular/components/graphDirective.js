@@ -1,3 +1,5 @@
+"use strict";
+
 angular.module('GraphDirective', [])
   .directive('vectorGraph', ['D3', function(D3) {
     return {
@@ -9,7 +11,7 @@ angular.module('GraphDirective', [])
         pdfs: "=",
         graph: "=config"
       },
-      link: function(scope, element, attributes) {
+      link: function(scope, element) {
         
         scope.margin = 30;
         
@@ -29,7 +31,7 @@ angular.module('GraphDirective', [])
             "stroke": "#000",
             "stroke-width": "1px",
             "fill": "none"
-          }
+          };
         };
         
         scope.spectrumStyle = function(color) {
@@ -37,16 +39,15 @@ angular.module('GraphDirective', [])
             "stroke": color,
             "stroke-width": "0.5px",
             "fill": "none"
-          }
+          };
         };
         
         scope.pdfStyle = function(color) {
           return {
-//            "shape-rendering": "crispEdges",
             "stroke": color,
             "stroke-width": "1px",
             "fill": "none"
-          }
+          };
         };
         
         window.onresize = function() {          
@@ -60,8 +61,9 @@ angular.module('GraphDirective', [])
 
         scope.getPath = function(points, scale) {
           var pointstring = JSON.stringify(points);
-          if (!scale)
+          if (!scale) {
             scale = 1;
+          }
           var path = scope.paths[pointstring];
           if (!(pointstring in scope.paths) || path.height !== scope.height || path.width !== scope.width || path.scale !== scope.graph.pdfScale) {
             scope.paths[pointstring] = {
@@ -75,5 +77,5 @@ angular.module('GraphDirective', [])
           return scope.paths[pointstring].path;
         };
       }
-    }
-  }])
+    };
+  }]);

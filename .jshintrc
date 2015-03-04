@@ -1,0 +1,6 @@
+{
+  "node": true,
+  "browserify": true,
+  "globals": ["angular", "FileReader", "btoa", "window", "d3"],
+  "predef": ["angular", "FileReader", "btoa", "window", "d3"]
+}

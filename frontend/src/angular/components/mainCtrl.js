@@ -1,61 +1,12 @@
-
-// 1300 750 village, horse north
-
-/* accepts parameters
- * h  Object = {h:x, s:y, v:z}
- * OR 
- * h, s, v
-*/
-
-var HSVtoRGB = function(h, s, v) {
-  var r, g, b, i, f, p, q, t;
-  if (h && s === undefined && v === undefined) {
-    s = h.s, v = h.v, h = h.h;
-  }
-  i = Math.floor(h * 6);
-  f = h * 6 - i;
-  p = v * (1 - s);
-  q = v * (1 - f * s);
-  t = v * (1 - (1 - f) * s);
-  switch (i % 6) {
-    case 0: r = v, g = t, b = p; break;
-    case 1: r = q, g = v, b = p; break;
-    case 2: r = p, g = v, b = t; break;
-    case 3: r = p, g = q, b = v; break;
-    case 4: r = t, g = p, b = v; break;
-    case 5: r = v, g = p, b = q; break;
-  }
-  return {
-    r: Math.floor(r * 255),
-    g: Math.floor(g * 255),
-    b: Math.floor(b * 255)
-  };
-}
-
-var generateColors = function(total) {
-//  var total = Object.keys($scope.spectra).length
-//  total += Object.keys($scope.pdfs).length
-
-  var phi = 0.618033988749895,
-    h = Math.random(),
-    colors = ["#000"]
-
-  for (var i=0; i < total; i++) {
-    h += phi;
-    h %= 1;
-    var c = HSVtoRGB(h, .85, .6);
-    colors.push("rgb(" + c.r + "," + c.g + "," + c.b + ")");
-  }
-  return colors;
-};
+"use strict";
 
 angular.module('MainController', [])
-  .controller('Main', ['$scope', function($scope) {
+  .controller('Main', ['$scope', 'Colors', function($scope, Colors) {
     
     $scope.spectra = {};
     $scope.pdfs = {};
     
-    $scope.colors = generateColors(20);
+    $scope.colors = Colors.generateColors(20);
     
     $scope.graph = {
       
@@ -86,7 +37,7 @@ angular.module('MainController', [])
           "fill": 'none',
           "stroke": $scope.colors[index], 
           "stroke-width": 0.5
-        }
+        };
       },
       
 //      getPoints: function() {
