@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="./styles.css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+    <script src="//localhost:35729/livereload.js"></script>
+    <script src="app.js"></script>
+  </head>
+  <body ng-app="DataAnalysis">
+    <div ng-controller="Main" class="container-fluid">
+      <div class="row"> 
+        <div class="col-sm-9 main-panel">
+          <vector-graph config="graph" spectra="spectra" pdfs="pdfs" colors="getColors()"></vector-graph>
+        </div>
+        <div class="col-sm-3 sidebar">
+          <xy-input files="spectra"></xy-input>
+          <pdf-input files="pdfs" scale="graph.pdfScale"></pdf-input>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
