@@ -1,8 +1,8 @@
 div
   input(type="file" class="hidden-input" name="spectra-input" multiple)
   .button-group
-    .btn.btn-success(ng-click="addFiles()") Upload spectra
-    .btn.btn-primary(ng-click="clearFiles()") Clear spectra
+    .btn.btn-success(ng-click="addFiles()" title="Use this for collected X-ray powder diffraction data") Import diffraction patterns
+    .btn.btn-primary(ng-click="clearFiles()") Clear diffraction patterns
             
     .form-group(ng-repeat="file in files")
       
