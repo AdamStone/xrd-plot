@@ -9,7 +9,7 @@
       <input ng-model="scale" type="range" min="10" max="100"/>
     </div>
     <div ng-repeat="file in files" class="form-group">
-      <input type="color" ng-attr-name="color-input-{{$index}}" ng-model="file.color" class="hidden-input"/><span ng-style="{'background-color': file.color}" ng-click="pickColor($index)" class="color-square">                       </span><span class="filename">{{file.filename}}</span>
+      <input type="color" ng-attr-name="color-input-{{$index}}" ng-model="file.color" class="hidden-input"/><span ng-style="{'background-color': file.color}" ng-click="pickColor($index)" class="color-square"></span><span class="filename">{{file.filename}}</span>
     </div>
   </div>
 </div>

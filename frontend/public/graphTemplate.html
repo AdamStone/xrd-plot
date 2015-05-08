@@ -7,14 +7,13 @@
          shape-rendering: crispEdges;
          stroke: #000;
          stroke-width: 1px;
-         fill: none;      
+         fill: none;
        }
        .save-button {
          position: absolute;
          top: 60px;
          right: 75px;
        }
-       
      </style>
     <g ng-attr-transform="translate({{margin}},{{margin}})">
       <rect ng-attr-width="{{width-2*margin}}" ng-attr-height="{{height-2*margin}}" ng-style="axisStyle()"></rect>
@@ -24,4 +23,3 @@
     <g ng-attr-transform="translate({{margin}}, {{height-margin}})" class="axis-group"></g>
   </svg><a href-lang="image/svg+xml" ng-href="data:image/svg+xml;base64,{{getSVGb64()}}" title="Save as SVG" download="xray.svg" class="btn btn-success save-button">Save SVG</a>
 </div>
-<!--<a href-lang="image/svg+xml" ng-href="data:image/svg+xml;base64,{{getSVGb64()}}" title="Save as SVG" ng-attr-download="{{graph.filename.split('.')[0]}}.svg">Download</a>-->

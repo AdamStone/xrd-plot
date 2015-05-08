@@ -11,35 +11,36 @@ angular.module('FileInputDirectives', [])
         scale: "="
       },
       link: function(scope, element) {
-        
-        var input = angular.element(element).find('[name="pdf-input"]');
-        
+
+        var input = angular.element(element)
+          .find('[name="pdf-input"]');
+
         scope.addFiles = function() {
           input.click();
         };
-        
+
         scope.clearFiles = function() {
-          input.wrap('<form>').closest('form').get(0).reset();
+          input.wrap('<form>').closest('form')
+            .get(0).reset();
           input.unwrap();
           scope.files = {};
         };
-        
+
         scope.pickColor = function(index) {
-          var colorInput = angular.element(element).find('[name="color-input-' + index + '"]');
-          
-          console.log(colorInput);
+          var colorInput = angular.element(element)
+            .find('[name="color-input-' + index + '"]');
+
           colorInput.click();
-        };        
-        
+        };
+
         input.bind("change", function(changeEvent) {
-          console.log('change triggered');
           var filesArray = changeEvent.target.files;
-          
+
           scope.readers = [];
           for (var i=0; i < filesArray.length; i++) {
-            
+
             scope.readers.push(new FileReader());
-            
+
             scope.readers[i].onload = (function(filename) {
               return function(loadEvent) {
                 var lines = loadEvent.target.result.split(/[\r\n]+/g);
@@ -47,10 +48,9 @@ angular.module('FileInputDirectives', [])
                 for (var j=0; j < lines.length; j++) {
                   if (lines[j].length > 1) {
                     var point = lines[j].split(/[ \t,]+/g);
-                    
+
                     if (/[a-zA-Z]+/.test(point[0])) {
-//                      console.log('metadata found:');
-//                      console.log(point);
+                      // TODO process metadata line
                     }
                     else {
                       var x = parseFloat(point[0]),
@@ -77,6 +77,7 @@ angular.module('FileInputDirectives', [])
                     }
                   }
                 }
+
                 data.push({
                   x: 90,
                   y: 0
@@ -85,7 +86,8 @@ angular.module('FileInputDirectives', [])
                 data.unshift({
                   x: 10,
                   y: 0
-                });                
+                });
+
                 scope.$apply(function() {
                   scope.files[filename] = {
                     filename: filename,
@@ -95,7 +97,7 @@ angular.module('FileInputDirectives', [])
                 });
               };
             })(filesArray[i].name);
-            
+
             scope.readers[i].readAsText(filesArray[i]);
           }
         });
@@ -113,36 +115,37 @@ angular.module('FileInputDirectives', [])
         files: "="
       },
       link: function(scope, element) {
-        
-        var input = angular.element(element).find('[name="spectra-input"]');
-        
+
+        var input = angular.element(element)
+          .find('[name="spectra-input"]');
+
         scope.addFiles = function() {
           input.click();
         };
-        
+
         scope.clearFiles = function() {
           input.wrap('<form>').closest('form').get(0).reset();
           input.unwrap();
           scope.files = {};
-        };        
-        
+        };
+
         scope.pickColor = function(index) {
-          var colorInput = angular.element(element).find('[name="color-input-' + index + '"]');
-          
-          console.log(colorInput);
+          var colorInput = angular.element(element)
+            .find('[name="color-input-' + index + '"]');
+
           colorInput.click();
-        };        
-        
+        };
+
         input.bind("change", function(changeEvent) {
           var filesArray = changeEvent.target.files;
-          
+
           scope.readers = [];
           for (var i=0; i < filesArray.length; i++) {
-            
+
             scope.readers.push(new FileReader());
-            
+
             scope.readers[i].onload = (function(filename) {
-              
+
               return function(loadEvent) {
                 var lines = loadEvent.target.result.split(/[\r\n]+/g);
                 var data = [];
@@ -170,7 +173,7 @@ angular.module('FileInputDirectives', [])
                 });
               };
             })(filesArray[i].name);
-            
+
             scope.readers[i].readAsText(filesArray[i]);
           }
         });

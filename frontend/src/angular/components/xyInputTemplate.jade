@@ -1,16 +1,27 @@
 div
-  input(type="file" class="hidden-input" name="spectra-input" multiple)
+  input(type="file"
+        class="hidden-input"
+        name="spectra-input"
+        multiple)
+
   .button-group
-    .btn.btn-success(ng-click="addFiles()" title="Use this for collected X-ray powder diffraction data") Import diffraction patterns
+
+    .btn.btn-success(
+      ng-click="addFiles()"
+      title="Use this for collected X-ray powder " +
+            "diffraction data") Import diffraction patterns
+
     .btn.btn-primary(ng-click="clearFiles()") Clear diffraction patterns
-            
+
     .form-group(ng-repeat="file in files")
-      
-      input(type="color", class="hidden-input", ng-attr-name="color-input-{{$index}}", ng-model="file.color")
-     
+
+      input(type="color"
+            class="hidden-input"
+            ng-attr-name="color-input-{{$index}}"
+            ng-model="file.color")
+
       span.color-square(ng-style="{'background-color': file.color}",
-                        ng-click="pickColor($index)")                        
-    
+                        ng-click="pickColor($index)")
+
       span.filename {{file.filename}}
 
-        

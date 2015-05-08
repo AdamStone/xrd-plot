@@ -1,23 +1,35 @@
 div
-  input(type="file" class="hidden-input" name="pdf-input" multiple)
+  input(type="file"
+        class="hidden-input"
+        name="pdf-input"
+        multiple)
+
   .button-group
-    .btn.btn-success(ng-click="addFiles()" title="Use this for X-ray powder diffraction file reference data") Import X-ray PDFs
+
+    .btn.btn-success(
+      ng-click="addFiles()"
+      title="Use this for X-ray powder diffraction " +
+            "file reference data") Import X-ray PDFs
+
     .btn.btn-primary(ng-click="clearFiles()") Clear X-ray PDFs
+
     .form-group
       label Vertical scaling
-      
+
       input(ng-model="scale",
             type="range",
             min="10",
             max="100")
-            
+
     .form-group(ng-repeat="file in files")
-      
-      input(type="color", class="hidden-input", ng-attr-name="color-input-{{$index}}", ng-model="file.color")
-     
+
+      input(type="color"
+            class="hidden-input"
+            ng-attr-name="color-input-{{$index}}"
+            ng-model="file.color")
+
       span.color-square(ng-style="{'background-color': file.color}",
-                        ng-click="pickColor($index)")                        
-    
+                        ng-click="pickColor($index)")
+
       span.filename {{file.filename}}
 
-    

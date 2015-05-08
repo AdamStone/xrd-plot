@@ -8,6 +8,7 @@ angular.module('DataAnalysis', [
 
 .config([
   '$compileProvider', function($compileProvider) {
-    $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|data):/);
+    $compileProvider.aHrefSanitizationWhitelist(
+      /^\s*(https?|ftp|mailto|file|data):/);
   }
 ]);

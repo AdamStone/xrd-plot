@@ -5,28 +5,39 @@ console.log(Path.resolve('./backend/server.js'));
 module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
-    
+
+    copy: {
+      data: {
+        files: [{
+          expand: true,
+          src: ['**/*'],
+          dest: 'frontend/public/data',
+          cwd: 'data'
+        }]
+      }
+    },
+
     uglify: {
       angular: {
         src: 'frontend/src/angular/**/*.js',
         dest: 'frontend/public/app.js'
       }
     },
-    
+
     sass: {
       build: {
         src: 'frontend/src/sass/styles.scss',
         dest: 'frontend/public/styles.css'
       }
     },
-    
+
     jade: {
       compile: {
         options: {
           data: {
             debug: false
           },
-          pretty: true          
+          pretty: true
         },
         files: [{
           expand: true,
@@ -38,7 +49,7 @@ module.exports = function(grunt) {
         }]
       }
     },
-    
+
     hapi: {
       custom_options: {
         options: {
@@ -49,14 +60,14 @@ module.exports = function(grunt) {
         }
       }
     },
-    
+
     watch: {
-      
+
       js: {
         files: ['frontend/src/angular/**/*.js'],
         tasks: ['uglify']
       },
-      
+
       sass: {
         files: 'frontend/src/**/*.scss',
         tasks: 'sass',
@@ -64,12 +75,12 @@ module.exports = function(grunt) {
           livereload: false
         }
       },
-      
+
       jade: {
         files: ['frontend/src/**/*.jade'],
         tasks: 'jade'
       },
-        
+
       hapi: {
         files: ['backend/**/*'],
         tasks: ['hapi'],
@@ -77,42 +88,43 @@ module.exports = function(grunt) {
           spawn: false
         }
       },
-      
+
       public: {
         files: ['frontend/public/**/*.*'],
         options: {
           livereload: true
         }
-      }          
-      
+      }
+
     }
-    
+
   });
-  
+
   var contribs = [
     'watch',
     'uglify',
     'jade',
-    'copy'    
+    'copy'
   ];
-  
+
   grunt.loadNpmTasks('grunt-hapi');
   grunt.loadNpmTasks('grunt-sass');
-    
+
   for (var i=0; i < contribs.length; i++) {
     grunt.loadNpmTasks('grunt-contrib-' + contribs[i]);
   };
-  
+
   grunt.registerTask('default', [
+    'copy',
     'sass',
     'jade',
     'uglify'
   ]);
-  
+
   grunt.registerTask('serve', [
     'default',
     'hapi',
     'watch'
   ]);
-  
+
 };

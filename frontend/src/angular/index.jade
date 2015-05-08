@@ -12,11 +12,11 @@ html(lang="en")
 
   body(ng-app="DataAnalysis")
     .container-fluid(ng-controller="Main")
-      .row 
+      .row
         .col-sm-9.main-panel
-          
+
           vector-graph(config="graph", spectra="spectra", pdfs="pdfs", colors="getColors()")
-        
+
         .col-sm-3.sidebar
           xy-input(files="spectra")
           pdf-input(files="pdfs", scale="graph.pdfScale")

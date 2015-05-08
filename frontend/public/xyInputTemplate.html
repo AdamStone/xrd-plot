@@ -5,7 +5,7 @@
     <div ng-click="addFiles()" title="Use this for collected X-ray powder diffraction data" class="btn btn-success">Import diffraction patterns</div>
     <div ng-click="clearFiles()" class="btn btn-primary">Clear diffraction patterns</div>
     <div ng-repeat="file in files" class="form-group">
-      <input type="color" ng-attr-name="color-input-{{$index}}" ng-model="file.color" class="hidden-input"/><span ng-style="{'background-color': file.color}" ng-click="pickColor($index)" class="color-square">                       </span><span class="filename">{{file.filename}}</span>
+      <input type="color" ng-attr-name="color-input-{{$index}}" ng-model="file.color" class="hidden-input"/><span ng-style="{'background-color': file.color}" ng-click="pickColor($index)" class="color-square"></span><span class="filename">{{file.filename}}</span>
     </div>
   </div>
 </div>

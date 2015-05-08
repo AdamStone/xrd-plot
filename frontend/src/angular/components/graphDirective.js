@@ -12,19 +12,19 @@ angular.module('GraphDirective', [])
         graph: "=config"
       },
       link: function(scope, element) {
-        
+
         scope.margin = 30;
-        
+
         var svg = angular.element(element).find('svg')[0];
         scope.width = svg.clientWidth;
         scope.height = svg.clientHeight;
-        
+
         scope.getSVGb64 = function() {
           var svg = angular.element(element).find('svg')
             .clone().wrap('<div/>').parent().html();
           return btoa(decodeURIComponent(encodeURIComponent(svg)));
         };
-        
+
         scope.axisStyle = function() {
           return {
             "shape-rendering": "crispEdges",
@@ -33,7 +33,7 @@ angular.module('GraphDirective', [])
             "fill": "none"
           };
         };
-        
+
         scope.spectrumStyle = function(color) {
           return {
             "stroke": color,
@@ -41,7 +41,7 @@ angular.module('GraphDirective', [])
             "fill": "none"
           };
         };
-        
+
         scope.pdfStyle = function(color) {
           return {
             "stroke": color,
@@ -49,31 +49,48 @@ angular.module('GraphDirective', [])
             "fill": "none"
           };
         };
-        
-        window.onresize = function() {          
+
+        window.onresize = function() {
           scope.$apply(function() {
             scope.width = svg.clientWidth;
-            scope.height = svg.clientHeight;            
-          });  
+            scope.height = svg.clientHeight;
+          });
         };
-        
+
         scope.paths = {};
 
         scope.getPath = function(points, scale) {
-          var pointstring = JSON.stringify(points);
-          if (!scale) {
-            scale = 1;
-          }
-          var path = scope.paths[pointstring];
-          if (!(pointstring in scope.paths) || path.height !== scope.height || path.width !== scope.width || path.scale !== scope.graph.pdfScale) {
+          var pointstring = JSON.stringify(points),
+              path = scope.paths[pointstring];
+
+          scale = (scale || 1);
+
+          if (!(pointstring in scope.paths) ||
+               path.height !== scope.height ||
+                 path.width !== scope.width ||
+                 path.scale !== scope.graph.pdfScale) {
+
             scope.paths[pointstring] = {
-              path: D3.buildPath(points, scope.width-scope.margin*2, (scope.height-scope.margin*2)*scale)(points),
+
+              path: D3.buildPath(
+                points,
+                scope.width-scope.margin*2,
+                scale*(scope.height-scope.margin*2)
+              )(points),
+
               width: scope.width,
               height: scope.height,
               scale: scope.graph.pdfScale
-            };            
+            };
           }
-          D3.buildAxes(points, scope.width-scope.margin*2, scope.height-scope.margin*2,  angular.element(element).find('.axis-group'));
+
+          D3.buildAxes(
+            points,
+            scope.width-scope.margin*2,
+            scope.height-scope.margin*2,
+            angular.element(element).find('.axis-group')
+          );
+
           return scope.paths[pointstring].path;
         };
       }
