@@ -6,17 +6,6 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
 
-    copy: {
-      data: {
-        files: [{
-          expand: true,
-          src: ['**/*'],
-          dest: 'frontend/public/data',
-          cwd: 'data'
-        }]
-      }
-    },
-
     uglify: {
       angular: {
         src: 'frontend/src/angular/**/*.js',
@@ -115,7 +104,6 @@ module.exports = function(grunt) {
   };
 
   grunt.registerTask('default', [
-    'copy',
     'sass',
     'jade',
     'uglify'

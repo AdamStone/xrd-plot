@@ -2,7 +2,7 @@
 
 angular.module('DataAnalysis', [
   'MainController',
-  'D3Service', 'ColorService',
+  'D3Service', 'ColorService', 'DataService',
   'FileInputDirectives', 'GraphDirective'
 ])
 
